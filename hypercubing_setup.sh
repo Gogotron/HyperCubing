@@ -1,18 +1,18 @@
 #!/usr/bin/env sh
 
-#sudo apt install wine winetricks msitools
+sudo apt -y install wine winetricks msitools
 
 if [ -z "$HYPERCUBING_DIR" ]; then
-    export HYPERCUBING_DIR="$HOME"/Desktop/HyperCubing
+    HYPERCUBING_DIR="$HOME"/Desktop/HyperCubing
 fi
 if [ -z "$HYPERCUBING_WINEPREFIX" ]; then
-    export HYPERCUBING_WINEPREFIX="$HYPERCUBING_DIR"/wine
+    HYPERCUBING_WINEPREFIX="$HYPERCUBING_DIR"/wine
 fi
 if [ -z "$DESKTOP_FILES" ]; then
-    export DESKTOP_FILES="$HOME"/.local/share/applications
+    DESKTOP_FILES="${XDG_DATA_HOME-$HOME/.local/share}"/applications
 fi
 
-#WINEPREFIX="$HYPERCUBING_WINEPREFIX" WINEARCH=win32 winetricks dotnet20 dotnet35 dotnet45
+WINEPREFIX="$HYPERCUBING_WINEPREFIX" WINEARCH=win32 winetricks dotnet20 dotnet35 dotnet40
 
 echo '[Desktop Entry]
 Type=Application
@@ -59,7 +59,7 @@ wget -q https://superliminal.com/andrey/mc7d/MC7D.zip
 unzip MC7D.zip
 echo '#!/usr/bin/env sh
 cd '"$HYPERCUBING_DIR"'/MC7D
-WINEPREFIX='"$HYPERCUBING_WINEPREFIX"' wine mc7d.exe' > mc7d
+MESA_GL_VERSION_OVERRIDE=4.5 WINEPREFIX='"$HYPERCUBING_WINEPREFIX"' wine mc7d.exe' > mc7d
 chmod u+x mc7d
 cp ../application.desktop "$DESKTOP_FILES"/mc7d.desktop
 echo 'Name=Magic Cube 7D
@@ -89,7 +89,7 @@ wget -q https://superliminal.com/andrey/mpu/MPUlt.zip
 unzip MPUlt.zip
 echo '#!/usr/bin/env sh
 cd '"$HYPERCUBING_DIR"'/MPU
-WINEPREFIX='"$HYPERCUBING_WINEPREFIX"' wine MPUlt_155.exe' > mpu
+MESA_GL_VERSION_OVERRIDE=4.5 WINEPREFIX='"$HYPERCUBING_WINEPREFIX"' wine MPUlt_155.exe' > mpu
 chmod u+x mpu
 cp ../application.desktop "$DESKTOP_FILES"/mpu.desktop
 echo 'Name=Magic Puzzle Ultimate
@@ -104,7 +104,7 @@ wget -q https://superliminal.com/andrey/mht633/M3dHT633.zip
 unzip M3dHT633.zip
 echo '#!/usr/bin/env sh
 cd '"$HYPERCUBING_DIR"'/MHT
-WINEPREFIX='"$HYPERCUBING_WINEPREFIX"' wine m3dht633.exe' > mht
+MESA_GL_VERSION_OVERRIDE=4.5 WINEPREFIX='"$HYPERCUBING_WINEPREFIX"' wine m3dht633.exe' > mht
 chmod u+x mht
 cp ../application.desktop "$DESKTOP_FILES"/mht.desktop
 echo 'Name=Magic Hyperbolic Tile
@@ -130,3 +130,6 @@ echo 'Name=Magic Tile
 Exec='"$HYPERCUBING_DIR"'/MT/mt
 Icon='"$HYPERCUBING_DIR"'/MT/icon.png' >> "$DESKTOP_FILES"/mt.desktop
 curl -s https://lh3.googleusercontent.com/pw/AM-JKLUrFyIFR8n6DnRzyJeTDzDTadFqyZXPd--oyxotrIahCMsvmircYLeXzOI2bC_Ix1P7wOMBP2JVcW10Y7KfDTOamVhD_9OcwpXqGFOvUkcBkOcnPu7OIXM7AwoAuc41BYhgFx8qFJmhkSCVUc54BrUJlg=s577-no?authuser=0 > icon.png
+
+
+rm application.desktop
