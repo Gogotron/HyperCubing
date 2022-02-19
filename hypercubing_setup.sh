@@ -132,4 +132,5 @@ Icon='"$HYPERCUBING_DIR"'/MT/icon.png' >> "$DESKTOP_FILES"/mt.desktop
 curl -s https://lh3.googleusercontent.com/pw/AM-JKLUrFyIFR8n6DnRzyJeTDzDTadFqyZXPd--oyxotrIahCMsvmircYLeXzOI2bC_Ix1P7wOMBP2JVcW10Y7KfDTOamVhD_9OcwpXqGFOvUkcBkOcnPu7OIXM7AwoAuc41BYhgFx8qFJmhkSCVUc54BrUJlg=s577-no?authuser=0 > icon.png
 
 
+cd "$HYPERCUBING_DIR"
 rm application.desktop
