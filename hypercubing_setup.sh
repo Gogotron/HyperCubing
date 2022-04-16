@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-sudo apt -y install wine winetricks msitools
+sudo apt -y install wine winetricks msitools java
 
 if [ -z "$HYPERCUBING_DIR" ]; then
     HYPERCUBING_DIR="$HOME"/Desktop/HyperCubing
@@ -12,13 +12,13 @@ if [ -z "$DESKTOP_FILES" ]; then
     DESKTOP_FILES="${XDG_DATA_HOME-$HOME/.local/share}"/applications
 fi
 
-WINEPREFIX="$HYPERCUBING_WINEPREFIX" WINEARCH=win32 winetricks dotnet20 dotnet35 dotnet40
+WINEPREFIX="$HYPERCUBING_WINEPREFIX" WINEARCH=win32 winetricks dotnet20 dotnet35 dotnet45
 
 echo '[Desktop Entry]
 Type=Application
 Terminal=false' > application.desktop
 
-cd "$HYPER_CUBING_DIR"
+cd "$HYPERCUBING_DIR"
 mkdir MC4D
 cd MC4D
 curl -s https://api.github.com/repos/cutelyaware/magiccube4d/releases/latest \
